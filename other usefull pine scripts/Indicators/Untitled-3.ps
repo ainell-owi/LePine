@@ -1,0 +1,104 @@
+//@version=5
+indicator("HMA Pro Flow [Mladen] + Signals", shorttitle="HMA Pro Flkow", overlay=true)
+
+// ==========================================
+// ─── INPUTS (MATCHING IMAGE) ───
+// ==========================================
+
+// --- ENTRY HMA SETTINGS ---
+grp_entry = "Entry HMA Settings"
+len_entry = input.int(14, title="Entry Period", minval=2, group=grp_entry)
+div_entry = input.float(0.1, title="Entry Divisor", step=0.1, minval=0.1, group=grp_entry)
+src_entry = input.source(close, title="Source", group=grp_entry)
+
+// --- TREND FILTER HMA SETTINGS ---
+grp_filter  = "Trend Filter HMA Settings"
+use_filter  = input.bool(true, title="Use Trend Filter?", group=grp_filter)
+len_filter  = input.int(300, title="Filter Period", minval=2, group=grp_filter)
+div_filter  = input.float(2.0, title="Filter Divisor", step=0.1, minval=0.1, group=grp_filter)
+show_filter = input.bool(true, title="Show Filter on Chart", group=grp_filter)
+
+// --- SIGNAL VISIBILITY ---
+grp_vis    = "Signal Visibility"
+show_buy   = input.bool(true, title="Show Buy Signals", group=grp_vis)
+show_sell  = input.bool(true, title="Show Sell Signals", group=grp_vis)
+show_stop  = input.bool(true, title="Show Stop/Close Signals", group=grp_vis)
+
+// ==========================================
+// ─── HMA CALCULATION FUNCTION ───
+// ==========================================
+f_hma(_src, _len, _div) =>
+    _halfLength = math.round(_len / _div)
+    _sqrtLength = math.round(math.sqrt(_len))
+    _wmaFull    = ta.wma(_src, _len)
+    _wmaHalf    = ta.wma(_src, _halfLength)
+    _diff       = 2 * _wmaHalf - _wmaFull
+    ta.wma(_diff, _sqrtLength)
+
+// ==========================================
+// ─── CALCULATIONS ───
+// ==========================================
+
+// 1. Entry HMA (Fast)
+hmaEntry = f_hma(src_entry, len_entry, div_entry)
+entryRising  = hmaEntry > hmaEntry[1]
+entryFalling = hmaEntry < hmaEntry[1]
+
+// 2. Filter HMA (Slow)
+hmaFilter = f_hma(src_entry, len_filter, div_filter)
+filterRising  = hmaFilter > hmaFilter[1]
+filterFalling = hmaFilter < hmaFilter[1]
+
+// ==========================================
+// ─── PLOTTING ───
+// ==========================================
+
+// Plot Entry HMA
+entryColor = entryRising ? #3CB371 : #FF4500
+plot(hmaEntry, title="Entry HMA", color=entryColor, linewidth=3)
+
+// Plot Trend Filter HMA (Only if "Show Filter" is checked)
+filterColor = filterRising ? color.new(color.green, 60) : color.new(color.red, 60)
+plot(show_filter and use_filter ? hmaFilter : na, title="Trend Filter", color=filterColor, linewidth=4)
+
+// ==========================================
+// ─── SIGNAL LOGIC ───
+// ==========================================
+
+// Raw change detections
+fast_TurnGreen = entryRising and entryFalling[1] // Fast turned Up
+fast_TurnRed   = entryFalling and entryRising[1] // Fast turned Down
+
+// -- CONDITION 1: BUY SIGNAL --
+// Fast turns Green AND (Filter is Green OR Filter is Off)
+isBuy = fast_TurnGreen and (not use_filter or filterRising)
+
+// -- CONDITION 2: SELL SIGNAL --
+// Fast turns Red AND (Filter is Red OR Filter is Off)
+isSell = fast_TurnRed and (not use_filter or filterFalling)
+
+// -- CONDITION 3: STOP (CLOSE LONG) --
+// Fast turns Red BUT Trend is Green (Counter-trend move -> Close Long, don't Short)
+// Only possible if Filter is ON.
+isStopLong = use_filter and fast_TurnRed and filterRising
+
+// -- CONDITION 4: STOP (CLOSE SHORT) --
+// Fast turns Green BUT Trend is Red (Counter-trend move -> Close Short, don't Buy)
+// Only possible if Filter is ON.
+isStopShort = use_filter and fast_TurnGreen and filterFalling
+
+// ==========================================
+// ─── PLOT SHAPES (LABELS) ───
+// ==========================================
+
+// Buy Labels
+plotshape(show_buy and isBuy, title="Buy Signal", style=shape.labelup, location=location.belowbar, color=color.green, text="BUY", textcolor=color.white, size=size.small)
+
+// Sell Labels
+plotshape(show_sell and isSell, title="Sell Signal", style=shape.labeldown, location=location.abovebar, color=color.red, text="SELL", textcolor=color.white, size=size.small)
+
+// Stop (Close Long) Labels - Orange X
+plotshape(show_stop and isStopLong, title="Stop Long", style=shape.xcross, location=location.abovebar, color=color.orange, text="STOP", textcolor=color.orange, size=size.small)
+
+// Stop (Close Short) Labels - Orange X
+plotshape(show_stop and isStopShort, title="Stop Short", style=shape.xcross, location=location.belowbar, color=color.orange, text="STOP", textcolor=color.orange, size=size.small)

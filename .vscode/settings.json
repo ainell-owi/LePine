@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.pine": "pine"
+    },
+    "markdown.validate.enabled": true
+}
