@@ -1,4 +1,97 @@
-THIS IS GOING TO BE A ONE STOP HOP FOR PINE SCRIPTWER .  A YEAR OF LEARNING PINESCRIPT STARTING FROM NOT U understanding any code ayt all  aND THEN   LEARNING THE ONLY REASON ABLE LANGUAGE T to learn. pinescript v 6i actuaally started   learning t he language the  same time pine script v6 droppepd so i have no actually spent any time with version 5  , so  it was annoying that  there jostwasnt much out there for  version6,  every signle v6 extension ,was  less than half of what was promised,  and ai  didnt even know pine scriptat  exsisted until 2026. so i began lewrnign and building a strategy creation tool, a tool i knew would take me a year or more  sincei started at step 0 not knowing anything not alick of code or any development work at th  and what i wanted yo build  off as a strategy creation tool that essentially would allow you to utalaize any signal  that any  indicator on chart  would give off would be abelto be used in this strategy creation tool.  with a ability tp  pyramid in and out  you coould esential    have anything btween an order that that needed 10 very specific signals to fire off   beenween  a users set amoujnt of bars, ie   
+# Pine Script Quantitative Repository
+
+A comprehensive collection of reverse-engineered Pine Script indicators and strategies, converted from TradingView to a structured library format.
+
+## Overview
+
+This repository contains 100+ Pine Script indicators and strategies organized into a modular library structure. Originally developed on TradingView, these scripts have been converted and organized for research, analysis, and educational purposes.
+
+## Repository Structure
+
+```
+Model Indicators/
+├── Dskyz[Dafe]_collective/     # Premium indicators from Dskyz/Dafe
+│   ├── Indicators/             # Individual trading indicators
+│   └── Strategies/             # Complete trading strategies
+├── quantitative/
+│   ├── libraries/              # Categorized indicator library
+│   │   ├── filters/           # Signal filtering indicators
+│   │   ├── momentum/          # Momentum oscillators
+│   │   ├── trends_FIR/        # FIR trend indicators
+│   │   ├── trends_IIR/        # IIR trend indicators
+│   │   ├── volatility/        # Volatility measures
+│   │   ├── volume/            # Volume-based indicators
+│   │   └── [other categories]/
+│   └── core/                  # Core price calculations
+└── [legacy scripts]/           # Original TradingView scripts
+```
+
+## Key Features
+
+- **100+ Converted Indicators**: Comprehensive library of technical analysis tools
+- **Categorized Organization**: Logical grouping by indicator type and function
+- **Premium Dskyz/Dafe Collection**: Exclusive indicators from top Pine Script developer
+- **Complete Strategies**: Full trading systems with entry/exit logic
+- **Well-Documented**: Each indicator includes usage notes and parameter descriptions
+
+## Categories
+
+### Core Libraries
+- **Filters**: Band-pass, Kalman, wavelet, and smoothing filters
+- **Momentum**: RSI, MACD, Stochastic, and custom oscillators
+- **Trends**: Moving averages (FIR/IIR), trend direction indicators
+- **Volatility**: ATR, Bollinger Bands, historical volatility measures
+- **Volume**: OBV, Money Flow, Volume Oscillators
+- **Numerics**: Statistical functions, distributions, transforms
+- **Cycles**: Hilbert, Fourier, lunar/solar cycle indicators
+- **Reversals**: Pivot points, fractals, reversal patterns
+- **Statistics**: Correlation, regression, hypothesis tests
+- **Forecasts**: Predictive models and ML-based forecasts
+- **Dynamics**: ADX, Ichimoku, Alligator, trend strength
+- **Errors**: Loss functions and error metrics
+
+### Dskyz/Dafe Collective
+Premium indicators including:
+- AI Adaptive Regime
+- Quasimodo Range Engine
+- Volume-Confirmed Reversal Engine
+- VIX Engine
+- Siege Structure Engine
+- Storm Trend ChartPrime
+- Open Interest & Liquidation Flow
+
+## Usage
+
+These Pine Script indicators are provided for:
+- **Educational purposes**: Study indicator logic and implementation
+- **Research**: Analyze technical analysis methodologies
+- **Reference**: Compare different approaches to signal generation
+- **Strategy development**: Build upon proven indicator concepts
+
+## Important Notes
+
+⚠️ **No Logic Modifications**: The quantitative library scripts are complete and should not be modified. They represent finalized, production-quality code.
+
+⚠️ **Dskyz/Dafe Indicators**: These premium indicators are the work of one of the world's top Pine Script developers. They should be preserved and respected as-is.
+
+## License & Attribution
+
+All scripts converted from TradingView. Original authors retain rights. This repository serves as a preservation and research archive.
+
+## Contributing
+
+When adding new indicators:
+1. Maintain existing folder structure
+2. Follow naming conventions (version numbers in filenames)
+3. Include documentation (.md files) for complex indicators
+4. Preserve original logic without modifications
+5. Add to appropriate category
+
+## Version History
+
+- **v6.0**: Complete library reorganization, 100+ indicators converted
+- **v5.x**: Initial Dskyz/Dafe collection integration
+- **Legacy**: Original TradingView script collection   
 close > sma 9 and close > 20sma and close > 50sma and close <> 100sma and close <200sma and hma 28  < sma 35 and rsi  <= 45 and 50 < adx < 70  andallmust be true between a 10 bar span  than and only than  fire off long 
 close long  when hma25 crossesunder hma25[1] 
 as an exreemly rediculous exacmplew
