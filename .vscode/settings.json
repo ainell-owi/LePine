@@ -2,5 +2,6 @@
     "files.associations": {
         "*.pine": "pine"
     },
-    "markdown.validate.enabled": true
+    "markdown.validate.enabled": true,
+    "editor.renderWhitespace": "trailing"
 }

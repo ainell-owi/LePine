@@ -15,11 +15,11 @@ FOLDER  FOUND IN THE LIBRARY IM CRURRENTLY ONT HTE 3RD VERSION IT WORKS AND NEED
 
 
 
-## Major o parts of the end goal
+## Major  parts of the end goal
 
-in the model indicators folder
-1. DSkyzinvestments/ Dafe indiCATORS
-2. QUANTITATIVE scripts cc                                                                                                                  
+# 📁📁in the model indicators folder📁📁
+## 1.📁📜DSkyzinvestments/ Dafe indiCATORS📜📁
+## 2.📁📜QUANTITATIVE Scripts📜📁                                    
 
 extreemly hard rule. no llm /agent is to change the logic  of any of the scripts, the ty are not to add noretake away, every script in the quantitative  folder iis dont t and completeded to abosolute perfection.
 - i still  have many  dyskyz infdicastors q to add.
@@ -33,4 +33,8 @@ e also has  woorks in python and csharp
 
 Dskyz folder logic .....   
 ## 📜Indicators 
-📁📜Indicator name, Version number.pine 
+#Indicator name, Version number.pine 
+-Always version 6
+-sometimes version5 , but itl lbe  version 5 and 6,
+#Indicator Name .md 
+![alt text](image.png)

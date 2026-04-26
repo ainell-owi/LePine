@@ -55,4 +55,8 @@ plot(c1, 'cci1', color=c1Color, linewidth=2)
 
 
 // Optional: Plot zero line for reference
-hline(0, "Zero Line", color=color.gray, linestyle=hline.style_dotted)
+plot(   0, "Zero Line", color.new(#884f88,0), linestyle=plot().linestyle_dotted)
+plot( 100, "100 Line", color.new(#884f88,0), linestyle=plot().linestyle_dotted)
+plot(-100, "-100 Line", color.new(#884f88,0), linestyle=plot().linestyle_dotted)
+plot( 250, "250 Line", color.new(#884f88, 0), linestyle=plot.linestyle_dotted)
+plot(-250, "-250 Line", color.new(#884f88, 0), linestyle=plot.linestyle_dotted)
