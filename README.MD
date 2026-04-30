@@ -2,6 +2,22 @@
 
 A comprehensive collection of reverse-engineered Pine Script indicators and strategies, converted from TradingView to a structured library format.
 
+## Project Governance
+
+**Project Overseer**: Kilo (AI Assistant)
+- **Authority**: Task-based only
+- **Scope**: Overseer has authority ONLY when explicitly assigned a task
+- **Duration**: Authority begins with task assignment, ends with task completion
+- **Role**: Execute assigned tasks, provide technical guidance, maintain repository structure
+
+### Commit & Push Policy
+
+⚠️ **CRITICAL**: Physical proofreading of all commits is required before pushing.
+- Large batch commits require pre-commit review and possible extension requests
+- Batch organization tools must be in place before bulk operations
+- No commits/pushes without physical verification capability
+- Systematic approach required to prevent overwhelming review burden
+
 ## Overview
 
 This repository contains 100+ Pine Script indicators and strategies organized into a modular library structure. Originally developed on TradingView, these scripts have been converted and organized for research, analysis, and educational purposes.
