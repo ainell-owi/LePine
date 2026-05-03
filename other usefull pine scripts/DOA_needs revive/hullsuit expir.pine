@@ -10,7 +10,7 @@ EHMA(_src, _length) =>
 THMA(_src, _length) =>
     ta.wma(ta.wma(_src, _length / 3) * 3 - ta.wma(_src, _length / 2) - ta.wma(_src, _length), _length)
 //. WHEN THMA IS CALLED LATER 
-thma = thma(src, len/2-
+thma = thma(src, len/2)
 
 // TRYING TO RE QRITEW THMA 
 hma3(_src, _length)=>

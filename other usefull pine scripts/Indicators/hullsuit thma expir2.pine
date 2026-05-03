@@ -4,7 +4,7 @@
 //import Gentleman-Goat/TradingToolsLibrary/1 as ttl
 import TradingView/ta/10
 
-indicator('hmCCI', 'HMACCI', true)
+indicator('hullswet', true)
 
 _src = input.source(close)
 _length = input.int(28, 'len')
@@ -57,11 +57,11 @@ ma3_line_up = input.color(color.new(#ff9966, 0), 'MA3 Line Up Color', group = 'M
 ma3_line_down = input.color(color.new(#66ffcc, 0), 'MA3 Line Down Color', group = 'MA3 Settings')
 
 //@optimized Uses three-stage exponential warmup compensators for O(1) complexity
-supersmoother(_drc,_length =>
+supersmoother(series float src, int _length) =>
     pi = 3.14159
-    y = math.exp(-math.sqrt(2) * pi / len)
+    y = math.exp(-math.sqrt(2) * pi / _length)
     c = -y * y
-    b = 2.0 * y * math.cos(math.sqrt(2) * pi / len)
+    b = 2.0 * y * math.cos(math.sqrt(2) * pi / _length)
     a = 1 - b - c
     z = 0.0
     iff_1 = bar_index == 2 ? b * nz(z[1]) + c * nz(z[2]) : a * ((x + nz(x[1])) / 2) + b * nz(z[1]) + c * nz(z[2])
@@ -115,6 +115,7 @@ hema(series float src, simple int N) =>
 
 // Calculation
 hema = hema(_src, _length)
+ss = supersmoother(_src, _length)
 // ====== HMA FUNCTIONS ======
 HMA(_src, _length) =>
     ta.wma(2 * ta.wma(_src, _length / 2) - ta.wma(_src, _length), math.round(math.sqrt(_length)))
@@ -127,7 +128,8 @@ THMA(_src, _length) =>
 
 RMAHMA(_src, _length) =>
     ta.rma(ta.rma(_src, _length / 3) * 3 - ta.rma(_src, _length / 2) - ta.rma(_src, _length), _length)
-
+sshma(_src, _length) =>
+    ta.ss())
 // Clean Switch Functions for each HMA
 get_ma1(src_hull1, len) =>
     switch ma1_mode
